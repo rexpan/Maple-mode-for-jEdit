@@ -151,6 +151,9 @@
 				
 				<KEYWORD3>atomic</KEYWORD3>
 				
+				<KEYWORD3>algebraic</KEYWORD3>
+				<KEYWORD3>relation</KEYWORD3>
+				
 				<KEYWORD3>module</KEYWORD3>
 				<KEYWORD3>record</KEYWORD3>
 				<KEYWORD3>procedure</KEYWORD3>
@@ -165,6 +168,28 @@
 				<KEYWORD3>symbol</KEYWORD3>
 				<KEYWORD3>name</KEYWORD3>
 				<KEYWORD3>constant</KEYWORD3>
+				
+				<KEYWORD3>anything</KEYWORD3>
+			<!-- Type function -->
+				<FUNCTION>set</FUNCTION>
+				<FUNCTION>list</FUNCTION>
+				<FUNCTION>Or</FUNCTION>
+				<FUNCTION>And</FUNCTION>
+				<FUNCTION>Not</FUNCTION>
+				<FUNCTION>identical</FUNCTION>
+				<FUNCTION>specfunc</FUNCTION>
+				<FUNCTION>anyfunc</FUNCTION>
+				<FUNCTION>specop</FUNCTION>
+				<FUNCTION>anyop</FUNCTION>
+				<FUNCTION>typefunc</FUNCTION>
+				<FUNCTION>patfunc</FUNCTION>
+				<FUNCTION>specindex</FUNCTION>
+				<FUNCTION>typeindex</FUNCTION>
+				<FUNCTION>anyindex</FUNCTION>
+				<FUNCTION>patindex</FUNCTION>
+				<FUNCTION>function</FUNCTION>
+				<FUNCTION>name</FUNCTION>
+				<FUNCTION>patlist</FUNCTION>
 			<!-- managed section -->
 				<!-- LOGIC, BOOLEAN -->
 					<KEYWORD1>and</KEYWORD1>
@@ -222,6 +247,7 @@
 					<FUNCTION>showstat</FUNCTION>
 					<FUNCTION>showstop</FUNCTION>
 					
+					<FUNCTION>DEBUG</FUNCTION>
 					<FUNCTION>trace</FUNCTION>
 					<FUNCTION>untrace</FUNCTION>
 					<FUNCTION>debug</FUNCTION>
@@ -288,7 +314,6 @@
 				<FUNCTION>AiryAiZeros</FUNCTION>
 				<FUNCTION>AiryBi</FUNCTION>
 				<FUNCTION>AiryBiZeros</FUNCTION>
-				<FUNCTION>algebraic</FUNCTION>
 				<FUNCTION>algsubs</FUNCTION>
 				<FUNCTION>alias</FUNCTION>
 				<FUNCTION>allvalues</FUNCTION>
@@ -546,7 +571,6 @@
 				<FUNCTION>ImportVector</FUNCTION>
 				<FUNCTION>indets</FUNCTION>
 				<FUNCTION>index</FUNCTION>
-				<FUNCTION>indexed</FUNCTION>
 				<FUNCTION>indices</FUNCTION>
 				<FUNCTION>inifcn</FUNCTION>
 				<FUNCTION>ininame</FUNCTION>
