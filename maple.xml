@@ -7,9 +7,10 @@
 		<PROPERTY NAME="commentStart" VALUE="(*" />
 		<PROPERTY NAME="commentEnd" VALUE="*)" />
 		<PROPERTY NAME="lineComment" VALUE="#" />
-		<PROPERTY NAME="wordBreakChars" VALUE=",+-=&lt;&gt;/?^&amp;*" />
+		<!-- CHANGE:110602.0817 - add $ and @ to wordBreakChars -->
+		<PROPERTY NAME="wordBreakChars" VALUE=",+-=&lt;&gt;/?^&amp;*$@" />
 		<!-- Auto indent -->
-			<PROPERTY NAME="unalignedOpenBrackets" VALUE="(" />
+			<PROPERTY NAME="unalignedOpenBrackets"  VALUE="(" />
 			<PROPERTY NAME="unalignedCloseBrackets" VALUE=")" />
 		<!-- 
 			<PROPERTY NAME="indentOpenBrackets" VALUE="[{(" />
@@ -24,12 +25,16 @@
 			<PROPERTY NAME="multipleBracketIndent" VALUE="true" />
 		-->
 		<PROPERTY NAME="indentNextLines"
-			VALUE="(\s*((\bif\b)?.*\bthen\b\s*))|(\s*(\b(for|while)\b)?.*\bdo\b\s*)|(.*(\bproc\b)\s*\(.*?\)\s*)|(.*(\bmodule\b)\s*\(.*\)\s*)" />
+			VALUE=".*(?&lt;!\bend\b\s)\b(?:(?:el)?if|else|do|proc|module)\b(?!.*\bend\b).*" />
+			<!-- VALUE="(\s*((\bif\b)?.*\bthen\b\s*))|(\s*(\b(for|while)\b)?.*\bdo\b\s*)|(.*(\bproc\b)\s*\(.*?\)\s*)|(.*(\bmodule\b)\s*\(.*\)\s*)" /> -->
 		<PROPERTY NAME="unindentThisLine" 
-			VALUE="\s*((((\bend\b)(\s*((\bif\b)|(\bdo\b)|(\bproc\b)|(\bmodule\b)))?)|(\bfi\b)|(\bod\b))|((\belif\b).*(\bthen\b))|(\belse\b))(;|:)?\s*" />
+			VALUE="\s*\b(?:end|elif|else)\b.*" />		
+			<!-- VALUE="\s*((((\bend\b)(\s*((\bif\b)|(\bdo\b)|(\bproc\b)|(\bmodule\b)))?)|(\bfi\b)|(\bod\b))|((\belif\b).*(\bthen\b))|(\belse\b))(;|:)?\s*" /> -->
+		<PROPERTY NAME="electricKeys" VALUE="\s*\b(?:end|elif|else)\b.*" />
 		<PROPERTY NAME="unindentNextLines" 
-			VALUE="\s*(((\bend\b)(\s*((\bif\b)|(\bdo\b)|(\bproc\b)|(\bmodule\b)))?)|(\bfi\b)|(\bod\b))\s*(;|:)?\s*" />
-		
+			VALUE="\s*\b(?:end|elif|else)\b.*" />
+			<!-- VALUE="\s*\bend\b.*" /> -->
+			<!-- VALUE="\s*(((\bend\b)(\s*((\bif\b)|(\bdo\b)|(\bproc\b)|(\bmodule\b)))?)|(\bfi\b)|(\bod\b))\s*(;|:)?\s*" /> -->
 	</PROPS>
 
 	<RULES IGNORE_CASE="FALSE" HIGHLIGHT_DIGITS="TRUE">
@@ -59,7 +64,6 @@
 			<EOL_SPAN TYPE="COMMENT2">#</EOL_SPAN>
 
 		<!-- Operator -->
-			
 			<SEQ TYPE="OPERATOR">+</SEQ>
 			<SEQ TYPE="OPERATOR">-</SEQ>
 			<SEQ TYPE="OPERATOR">*</SEQ>
@@ -110,64 +114,191 @@
 				
 		<KEYWORDS>
 			<!-- Reserved words -->
-				<KEYWORD1>and</KEYWORD1>
-				<KEYWORD1>or</KEYWORD1>
-				<KEYWORD1>xor</KEYWORD1>
-				<KEYWORD1>implies</KEYWORD1>
-				<KEYWORD1>not</KEYWORD1>
-				
-				<KEYWORD1>union</KEYWORD1>
-				<KEYWORD1>subset</KEYWORD1>
-				<KEYWORD1>intersect</KEYWORD1>
-				<KEYWORD1>minus</KEYWORD1>
-				<KEYWORD1>in</KEYWORD1>
-				
-				<KEYWORD1>mod</KEYWORD1>
 				<KEYWORD1>assuming</KEYWORD1>
 				<KEYWORD1>break</KEYWORD1>
 				<KEYWORD1>by</KEYWORD1>
-				<KEYWORD1>catch</KEYWORD1>
+				<!-- <KEYWORD1>catch</KEYWORD1> -->		<!-- move the section DEBUG -->
 				<KEYWORD1>description</KEYWORD1>
 				<KEYWORD1>do</KEYWORD1>
 				<KEYWORD1>done</KEYWORD1>
 				<KEYWORD1>elif</KEYWORD1>
 				<KEYWORD1>else</KEYWORD1>
 				<KEYWORD1>end</KEYWORD1>
-				<KEYWORD1>error</KEYWORD1>
+				<!-- <KEYWORD1>error</KEYWORD1> -->		<!-- move the section DEBUG -->
 				<KEYWORD1>export</KEYWORD1>
-				<KEYWORD1>fi</KEYWORD1>
-				<KEYWORD1>finally</KEYWORD1>
+				<!-- <KEYWORD1>fi</KEYWORD1> -->		<!-- CHANGE : 110602.0823, remove keyword "fi" -->
+				<!-- <KEYWORD1>finally</KEYWORD1> -->	<!-- move the section DEBUG -->
 				<KEYWORD1>for</KEYWORD1>
 				<KEYWORD1>from</KEYWORD1>
 				<KEYWORD1>global</KEYWORD1>
 				<KEYWORD1>if</KEYWORD1>
+				<!-- <KEYWORD1>implies</KEYWORD1> -->	<!-- move to SET OPERATOR -->
+				<!-- <KEYWORD1>in</KEYWORD1> -->		<!-- move to SET OPERATOR -->
+				<!-- <KEYWORD1>intersect</KEYWORD1> -->	<!-- move to SET OPERATOR -->
 				<KEYWORD1>local</KEYWORD1>
-				<KEYWORD1>module</KEYWORD1>
+				<!-- <KEYWORD1>minus</KEYWORD1> -->		<!-- move to SET OPERATOR -->
+				<!-- <KEYWORD1>mod</KEYWORD1> -->		<!-- move to  ??? -->
+				<!-- <KEYWORD1>module</KEYWORD1> -->	<!-- move to PROCEDURE, MODULE, RECORD -->
 				<KEYWORD1>next</KEYWORD1>
-				<KEYWORD1>od</KEYWORD1>
+				<!-- <KEYWORD1>not</KEYWORD1> -->		<!-- move to SET OPERATOR -->
+				<!-- <KEYWORD1>od</KEYWORD1> -->		<!-- CHANGE : 110602.0823, remove keyword "od" -->
 				<KEYWORD1>option</KEYWORD1>
 				<KEYWORD1>options</KEYWORD1>
-				<KEYWORD1>proc</KEYWORD1>
+				<!-- <KEYWORD1>or</KEYWORD1> -->		<!-- it was specify above -->
+				<!-- <KEYWORD1>proc</KEYWORD1> -->		<!-- move to PROCEDURE, MODULE, RECORD -->
 				<KEYWORD1>quit</KEYWORD1>
 				<KEYWORD1>read</KEYWORD1>
 				<KEYWORD1>return</KEYWORD1>
 				<KEYWORD1>save</KEYWORD1>
 				<KEYWORD1>stop</KEYWORD1>
+				<!-- <KEYWORD1>subset</KEYWORD1> -->	<!-- it was specify above -->
 				<KEYWORD1>then</KEYWORD1>
 				<KEYWORD1>to</KEYWORD1>
-				<KEYWORD1>try</KEYWORD1>
+				<!-- <KEYWORD1>try</KEYWORD1> -->		<!-- move to DEBUG -->
+				<!-- <KEYWORD1>union</KEYWORD1> -->		<!-- it was specify above -->
 				<KEYWORD1>use</KEYWORD1>
+				<KEYWORD1>uses</KEYWORD1>				<!-- CHANGE : 110602.0823, add keyword "uses" -->
 				<KEYWORD1>while</KEYWORD1>
-
-			<!-- Ordinal types. -->
-				<KEYWORD3>`integer`</KEYWORD3>
-				<KEYWORD3>`set`</KEYWORD3>
-				<KEYWORD3>`list`</KEYWORD3>
-				<KEYWORD3>`string`</KEYWORD3>
-				<!-- <KEYWORD3>`indexed`</KEYWORD3> -->
-				<KEYWORD3>`name`</KEYWORD3>
-				<KEYWORD3>`const`</KEYWORD3>
-				<KEYWORD3>`real`</KEYWORD3>
+				<!-- <KEYWORD1>xor</KEYWORD1> -->		<!-- it was specify above -->!
+			<!-- Ordinal types -->
+				<KEYWORD3>integer</KEYWORD3>
+				<KEYWORD3>posint</KEYWORD3>
+				<KEYWORD3>negint</KEYWORD3>
+				<KEYWORD3>even</KEYWORD3>
+				<KEYWORD3>odd</KEYWORD3>
+				<KEYWORD3>real</KEYWORD3>
+				<KEYWORD3>rational</KEYWORD3>
+				<KEYWORD3>fraction</KEYWORD3>
+				<KEYWORD3>float</KEYWORD3>
+				<KEYWORD3>numeric</KEYWORD3>
+				<KEYWORD3>complex</KEYWORD3>
+				
+				<KEYWORD3>truefalse</KEYWORD3>
+				<KEYWORD3>boolean</KEYWORD3>
+				
+				<KEYWORD3>atomic</KEYWORD3>
+				
+				<KEYWORD3>module</KEYWORD3>
+				<KEYWORD3>procedure</KEYWORD3>
+				<KEYWORD3>function</KEYWORD3>
+				
+				<KEYWORD3>set</KEYWORD3>
+				<KEYWORD3>list</KEYWORD3>
+				<KEYWORD3>table</KEYWORD3>
+				<KEYWORD3>Array</KEYWORD3>
+				<KEYWORD3>string</KEYWORD3>
+				<KEYWORD3>indexed</KEYWORD3>
+				<KEYWORD3>symbol</KEYWORD3>
+				<KEYWORD3>name</KEYWORD3>
+				<KEYWORD3>constant</KEYWORD3>
+			<!-- managed section -->
+				<!-- LOGIC, BOOLEAN -->
+					<KEYWORD1>and</KEYWORD1>
+					<KEYWORD1>or</KEYWORD1>
+					<KEYWORD1>xor</KEYWORD1>
+					<KEYWORD1>implies</KEYWORD1>
+					<KEYWORD1>not</KEYWORD1>
+				<!-- SET OPERATOR -->
+					<KEYWORD1>union</KEYWORD1>
+					<KEYWORD1>subset</KEYWORD1>
+					<KEYWORD1>intersect</KEYWORD1>
+					<KEYWORD1>minus</KEYWORD1>
+					<KEYWORD1>in</KEYWORD1>
+				<!-- ALGEBRA -->
+					<KEYWORD1>mod</KEYWORD1>
+				<!-- PROCEDURE, MODULE, RECORD -->
+					<KEYWORD1>proc</KEYWORD1>
+					<KEYWORD2>procname</KEYWORD2>
+					<KEYWORD2>thisproc</KEYWORD2>
+					
+					<KEYWORD1>module</KEYWORD1>
+					<KEYWORD2>thismodule</KEYWORD2>
+					
+					<KEYWORD2>arrow</KEYWORD2>
+					<KEYWORD2>autocompile</KEYWORD2>
+					<KEYWORD2>builtin</KEYWORD2>
+					<KEYWORD2>cache</KEYWORD2>
+					<KEYWORD2>call_external</KEYWORD2>
+					<KEYWORD2>Copyright</KEYWORD2>
+					<KEYWORD2>hfloat</KEYWORD2>
+					<KEYWORD2>inline</KEYWORD2>
+					<KEYWORD2>operator</KEYWORD2>
+					<KEYWORD2>remember</KEYWORD2>
+					<KEYWORD2>system</KEYWORD2>
+					<KEYWORD2>trace</KEYWORD2>
+					
+					<KEYWORD2>expects</KEYWORD2>
+					<KEYWORD2>seq</KEYWORD2>
+					<KEYWORD2>depends</KEYWORD2>
+					<KEYWORD2>uneval</KEYWORD2>
+					<KEYWORD2>evaln</KEYWORD2>
+					
+					<FUNCTION>Record</FUNCTION>
+				<!-- DEBUG -->
+					<KEYWORD1>error</KEYWORD1>
+					<FUNCTION>ASSERT</FUNCTION>
+					<FUNCTION>WARNING</FUNCTION>
+					<KEYWORD1>try</KEYWORD1>
+					<KEYWORD1>catch</KEYWORD1>
+					<KEYWORD1>finally</KEYWORD1>
+					
+					<LITERAL2>lastexception</LITERAL2>
+					<LITERAL2>tracelast</LITERAL2>
+					
+					<FUNCTION>showstat</FUNCTION>
+					<FUNCTION>showstop</FUNCTION>
+					
+					<FUNCTION>trace</FUNCTION>
+					<FUNCTION>untrace</FUNCTION>
+					<FUNCTION>debug</FUNCTION>
+					<FUNCTION>undebug</FUNCTION>
+					
+					<FUNCTION>stopat</FUNCTION>
+					<FUNCTION>unstopat</FUNCTION>
+					<FUNCTION>stoplast</FUNCTION>
+					<FUNCTION>stopwhen</FUNCTION>
+					<FUNCTION>stopwhenif</FUNCTION>
+					<FUNCTION>unstopwhen</FUNCTION>
+					<FUNCTION>stoperror</FUNCTION>
+					<FUNCTION>unstoperror</FUNCTION>
+				<!-- FUNCTION -->
+					<!-- SOLVE -->
+						<FUNCTION>solve</FUNCTION>
+						<FUNCTION>intsolve</FUNCTION>
+						<FUNCTION>dsolve</FUNCTION>
+						<FUNCTION>isolve</FUNCTION>
+						<FUNCTION>dsolve</FUNCTION>
+						<FUNCTION>fsolve</FUNCTION>
+						<FUNCTION>msolve</FUNCTION>
+						<FUNCTION>pdsolve</FUNCTION>
+						<FUNCTION>rsolve</FUNCTION>
+						<FUNCTION>SolveTools</FUNCTION>
+					<!-- LIBRARY -->
+						<FUNCTION>march</FUNCTION>
+						<FUNCTION>save</FUNCTION>
+						<FUNCTION>savelib</FUNCTION>
+						<FUNCTION>read</FUNCTION>
+						<FUNCTION>LibraryTools</FUNCTION>
+						<FUNCTION>with</FUNCTION>
+						<FUNCTION>unwith</FUNCTION>
+					
+						<FUNCTION>map</FUNCTION>
+						<FUNCTION>andmap</FUNCTION>
+						<FUNCTION>ormap</FUNCTION>
+						<FUNCTION>maptype</FUNCTION>
+						<FUNCTION>zip</FUNCTION>
+						<FUNCTION>seq</FUNCTION>
+						<FUNCTION>select</FUNCTION>
+						<FUNCTION>remove</FUNCTION>
+						<FUNCTION>selectremove</FUNCTION>
+						
+						<FUNCTION>map</FUNCTION>
+						<FUNCTION>map</FUNCTION>
+						<FUNCTION>map</FUNCTION>
+						<FUNCTION>map</FUNCTION>
+						<FUNCTION>map</FUNCTION>
+						<FUNCTION>map</FUNCTION>
+						
 			<!-- Standard library functions -->
 				<FUNCTION>about</FUNCTION>
 				<FUNCTION>ans</FUNCTION>
@@ -208,7 +339,6 @@
 				<FUNCTION>arctanh</FUNCTION>
 				<FUNCTION>argument</FUNCTION>
 				<FUNCTION>Array</FUNCTION>
-				<FUNCTION>array</FUNCTION>
 				<FUNCTION>ArrayDims</FUNCTION>
 				<FUNCTION>ArrayElems</FUNCTION>
 				<FUNCTION>ArrayIndFns</FUNCTION>
@@ -232,7 +362,6 @@
 				<FUNCTION>Beta</FUNCTION>
 				<FUNCTION>binomial</FUNCTION>
 				<FUNCTION>branches</FUNCTION>
-				<FUNCTION>C</FUNCTION>
 				<FUNCTION>cat</FUNCTION>
 				<FUNCTION>ceil</FUNCTION>
 				<FUNCTION>changecoords</FUNCTION>
@@ -254,7 +383,6 @@
 				<FUNCTION>compoly</FUNCTION>
 				<FUNCTION>CompSeq</FUNCTION>
 				<FUNCTION>conjugate</FUNCTION>
-				<FUNCTION>constant</FUNCTION>
 				<FUNCTION>Content</FUNCTION>
 				<FUNCTION>content</FUNCTION>
 				<FUNCTION>convergs</FUNCTION>
@@ -306,8 +434,7 @@
 				<FUNCTION>dsolve</FUNCTION>
 				<FUNCTION>efficiency</FUNCTION>
 				<FUNCTION>Ei</FUNCTION>
-				<FUNCTION>Eigenvals</FUNCTION>
-				<FUNCTION>eliminate</FUNCTION>
+				<FUNCTION>eliminateevalm</FUNCTION>
 				<FUNCTION>ellipsoid</FUNCTION>
 				<FUNCTION>EllipticCE</FUNCTION>
 				<FUNCTION>EllipticCK</FUNCTION>
@@ -334,7 +461,7 @@
 				<FUNCTION>evalf</FUNCTION>
 				<FUNCTION>evalfint</FUNCTION>
 				<FUNCTION>evalhf</FUNCTION>
-				<FUNCTION>evalm</FUNCTION>
+				<FUNCTION>evalindets</FUNCTION>
 				<FUNCTION>evaln</FUNCTION>
 				<FUNCTION>evalr</FUNCTION>
 				<FUNCTION>evalrC</FUNCTION>
@@ -358,7 +485,6 @@
 				<FUNCTION>fdiscont</FUNCTION>
 				<FUNCTION>feof</FUNCTION>
 				<FUNCTION>fflush</FUNCTION>
-				<FUNCTION>FFT</FUNCTION>
 				<FUNCTION>filepos</FUNCTION>
 				<FUNCTION>fixdiv</FUNCTION>
 				<FUNCTION>float</FUNCTION>
@@ -375,7 +501,7 @@
 				<FUNCTION>fremove</FUNCTION>
 				<FUNCTION>FresnelC</FUNCTION>
 				<FUNCTION>Fresnelf</FUNCTION>
-				<FUNCTION>Fresnelg</FUNCTION>
+				<FUNCTION>Fresnelg</FUNCTION>                                                                 
 				<FUNCTION>FresnelS</FUNCTION>
 				<FUNCTION>FromInert</FUNCTION>
 				<FUNCTION>frontend</FUNCTION>
@@ -419,7 +545,6 @@
 				<FUNCTION>IEEEdiffs</FUNCTION>
 				<FUNCTION>ifactor</FUNCTION>
 				<FUNCTION>ifactors</FUNCTION>
-				<FUNCTION>iFFT</FUNCTION>
 				<FUNCTION>igcd</FUNCTION>
 				<FUNCTION>igcdex</FUNCTION>
 				<FUNCTION>ilcm</FUNCTION>
@@ -443,7 +568,6 @@
 				<FUNCTION>intat</FUNCTION>
 				<FUNCTION>interface</FUNCTION>
 				<FUNCTION>Interp</FUNCTION>
-				<FUNCTION>interp</FUNCTION>
 				<FUNCTION>Inverse</FUNCTION>
 				<FUNCTION>invfunc</FUNCTION>
 				<FUNCTION>invztrans</FUNCTION>
@@ -497,7 +621,6 @@
 				<FUNCTION>LaguerreL</FUNCTION>
 				<FUNCTION>LambertW</FUNCTION>
 				<FUNCTION>latex</FUNCTION>
-				<FUNCTION>lattice</FUNCTION>
 				<FUNCTION>lcm</FUNCTION>
 				<FUNCTION>Lcm</FUNCTION>
 				<FUNCTION>lcoeff</FUNCTION>
@@ -525,12 +648,10 @@
 				<FUNCTION>match</FUNCTION>
 				<FUNCTION>MatlabMatrix</FUNCTION>
 				<FUNCTION>Matrix</FUNCTION>
-				<FUNCTION>matrix</FUNCTION>
 				<FUNCTION>MatrixOptions</FUNCTION>
 				<FUNCTION>max</FUNCTION>
 				<FUNCTION>maximize</FUNCTION>
 				<FUNCTION>maxnorm</FUNCTION>
-				<FUNCTION>maxorder</FUNCTION>
 				<FUNCTION>MeijerG</FUNCTION>
 				<FUNCTION>member</FUNCTION>
 				<FUNCTION>min</FUNCTION>
@@ -573,7 +694,6 @@
 				<FUNCTION>patmatch</FUNCTION>
 				<FUNCTION>pclose</FUNCTION>
 				<FUNCTION>PDEplot_options</FUNCTION>
-				<FUNCTION>pdesolve</FUNCTION>
 				<FUNCTION>pdetest</FUNCTION>
 				<FUNCTION>pdsolve</FUNCTION>
 				<FUNCTION>piecewise</FUNCTION>
@@ -599,9 +719,7 @@
 				<FUNCTION>print</FUNCTION>
 				<FUNCTION>printf</FUNCTION>
 				<FUNCTION>ProbSplit</FUNCTION>
-				<FUNCTION>procbody</FUNCTION>
 				<FUNCTION>ProcessOptions</FUNCTION>
-				<FUNCTION>procmake</FUNCTION>
 				<FUNCTION>Product</FUNCTION>
 				<FUNCTION>product</FUNCTION>
 				<FUNCTION>proot</FUNCTION>
@@ -614,25 +732,22 @@
 				<FUNCTION>quo</FUNCTION>
 				<FUNCTION>radfield</FUNCTION>
 				<FUNCTION>radnormal</FUNCTION>
-				<FUNCTION>radsimp</FUNCTION>
 				<FUNCTION>rand</FUNCTION>
 				<FUNCTION>randomize</FUNCTION>
 				<FUNCTION>Randpoly</FUNCTION>
 				<FUNCTION>randpoly</FUNCTION>
 				<FUNCTION>Randprime</FUNCTION>
 				<FUNCTION>range</FUNCTION>
-				<FUNCTION>ratinterp</FUNCTION>
 				<FUNCTION>rationalize</FUNCTION>
 				<FUNCTION>Ratrecon</FUNCTION>
 				<FUNCTION>ratrecon</FUNCTION>
 				<FUNCTION>Re</FUNCTION>
 				<FUNCTION>readbytes</FUNCTION>
 				<FUNCTION>readdata</FUNCTION>
-				<FUNCTION>readlib</FUNCTION>
 				<FUNCTION>readline</FUNCTION>
 				<FUNCTION>readstat</FUNCTION>
 				<FUNCTION>realroot</FUNCTION>
-				<FUNCTION>Record</FUNCTION>
+				<!-- <FUNCTION>Record</FUNCTION> -->		<!-- move to PROCEDURE, MODULE, RECORD -->
 				<FUNCTION>Reduce</FUNCTION>
 				<FUNCTION>references</FUNCTION>
 				<FUNCTION>release</FUNCTION>
@@ -640,7 +755,6 @@
 				<FUNCTION>rem</FUNCTION>
 				<FUNCTION>remove</FUNCTION>
 				<FUNCTION>repository</FUNCTION>
-				<FUNCTION>requires</FUNCTION>
 				<FUNCTION>residue</FUNCTION>
 				<FUNCTION>RESol</FUNCTION>
 				<FUNCTION>Resultant</FUNCTION>
@@ -697,12 +811,10 @@
 				<FUNCTION>sinterp</FUNCTION>
 				<FUNCTION>smartplot3d</FUNCTION>
 				<FUNCTION>Smith</FUNCTION>
-				<FUNCTION>solve</FUNCTION>
-				<FUNCTION>solvefor</FUNCTION>
+				<!-- <FUNCTION>solve</FUNCTION> --> 		<!-- move to FUNCTION > SOLVE -->
 				<FUNCTION>sort</FUNCTION>
 				<FUNCTION>sparse</FUNCTION>
 				<FUNCTION>spec_eval_rule</FUNCTION>
-				<FUNCTION>spline</FUNCTION>
 				<FUNCTION>spreadsheet</FUNCTION>
 				<FUNCTION>SPrem</FUNCTION>
 				<FUNCTION>sprem</FUNCTION>
@@ -727,7 +839,6 @@
 				<FUNCTION>Sum</FUNCTION>
 				<FUNCTION>sum</FUNCTION>
 				<FUNCTION>surd</FUNCTION>
-				<FUNCTION>Svd</FUNCTION>
 				<FUNCTION>symmdiff</FUNCTION>
 				<FUNCTION>symmetric</FUNCTION>
 				<FUNCTION>syntax</FUNCTION>
@@ -740,12 +851,10 @@
 				<FUNCTION>testfloat</FUNCTION>
 				<FUNCTION>TEXT</FUNCTION>
 				<FUNCTION>thaw</FUNCTION>
-				<FUNCTION>thiele</FUNCTION>
 				<FUNCTION>time</FUNCTION>
 				<FUNCTION>timelimit</FUNCTION>
 				<FUNCTION>ToInert</FUNCTION>
 				<FUNCTION>TopologicalSort</FUNCTION>
-				<FUNCTION>traperror</FUNCTION>
 				<FUNCTION>triangular</FUNCTION>
 				<FUNCTION>trigsubs</FUNCTION>
 				<FUNCTION>trunc</FUNCTION>
@@ -763,7 +872,6 @@
 				<FUNCTION>userinfo</FUNCTION>
 				<FUNCTION>value</FUNCTION>
 				<FUNCTION>Vector</FUNCTION>
-				<FUNCTION>vector</FUNCTION>
 				<FUNCTION>verify</FUNCTION>
 				<FUNCTION>WeierstrassP</FUNCTION>
 				<FUNCTION>WeberE</FUNCTION>
@@ -784,24 +892,24 @@
 				<FUNCTION>Zeta</FUNCTION>
 				<FUNCTION>zip</FUNCTION>
 				<FUNCTION>ztrans</FUNCTION>
-
 			<!-- Initially known names -->
 				<LITERAL2>Catalan</LITERAL2>
-				<LITERAL2>constants</LITERAL2>
+				<LITERAL2>constants</LITERAL2>	<!-- =  false	gamma	infinity	true	Catalan	FAIL	Pi -->
 				<LITERAL2>Digits</LITERAL2>
 				<LITERAL2>FAIL</LITERAL2>
 				<LITERAL2>false</LITERAL2>
-				<LITERAL2>gamma</LITERAL2>
+				<LITERAL2>gamma</LITERAL2>		<!-- γ -->
 				<LITERAL2>I</LITERAL2>
-				<LITERAL2>infinity</LITERAL2>
+				<LITERAL2>infinity</LITERAL2>	<!-- ∞ -->
 				<LITERAL2>integrate</LITERAL2>
-				<LITERAL2>lasterror</LITERAL2>
+				<!-- <LITERAL2>lastexception</LITERAL2> -->	<!-- move to DEBUG -->
 				<LITERAL2>libname</LITERAL2>
 				<LITERAL2>`mod`</LITERAL2>
 				<LITERAL2>NULL</LITERAL2>
 				<LITERAL2>Order</LITERAL2>
-				<LITERAL2>Pi</LITERAL2>
+				<LITERAL2>Pi</LITERAL2>			<!-- π -->
 				<LITERAL2>printlevel</LITERAL2>
+				<!-- <LITERAL2>tracelast</LITERAL2> -->		<!-- move to DEBUG -->
 				<LITERAL2>true</LITERAL2>
 				<LITERAL2>undefined</LITERAL2>
 		</KEYWORDS>
