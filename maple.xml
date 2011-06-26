@@ -9,11 +9,12 @@
 		<PROPERTY NAME="lineComment" VALUE="#" />
 		<PROPERTY NAME="wordBreakChars" VALUE=",+-=&lt;&gt;/?^&amp;*" />
 		<!-- Auto indent -->
-		<PROPERTY NAME="indentOpenBrackets" VALUE="[{(" />
-		<PROPERTY NAME="indentCloseBrackets" VALUE="]})" />
-		<!-- 
 			<PROPERTY NAME="unalignedOpenBrackets" VALUE="(" />
 			<PROPERTY NAME="unalignedCloseBrackets" VALUE=")" />
+		<!-- 
+			<PROPERTY NAME="indentOpenBrackets" VALUE="[{(" />
+			<PROPERTY NAME="indentCloseBrackets" VALUE="]})" />
+			
 			<PROPERTY NAME="indentPrevLine" 
 				VALUE="\s*(if|while)\s*(|else|case|default:)[^;]*|for\s*\(.*)" />
 			<PROPERTY NAME="doubleBracketIndent" VALUE="false" />
@@ -23,25 +24,28 @@
 			<PROPERTY NAME="multipleBracketIndent" VALUE="true" />
 		-->
 		<PROPERTY NAME="indentNextLines"
-			VALUE="(\s*((if)\s*.*\s*then\s*))|(\s*(for|while)\s*.*\s*do\s*)|(.*proc\s*\(.*\)\s*)|(.*module\s*\(.*\)\s*)" />
+			VALUE="(\s*((\bif\b)?.*\bthen\b\s*))|(\s*(\b(for|while)\b)?.*\bdo\b\s*)|(.*(\bproc\b)\s*\(.*?\)\s*)|(.*(\bmodule\b)\s*\(.*\)\s*)" />
 		<PROPERTY NAME="unindentThisLine" 
-			VALUE="\s*((((end(\s*(if|do|proc|module))?)|fi|od)\s*(;|:)?)|(elif\s*.*\s*then)|(else))\s*" />
+			VALUE="\s*((((\bend\b)(\s*((\bif\b)|(\bdo\b)|(\bproc\b)|(\bmodule\b)))?)|(\bfi\b)|(\bod\b))|((\belif\b).*(\bthen\b))|(\belse\b))(;|:)?\s*" />
 		<PROPERTY NAME="unindentNextLines" 
-			VALUE="\s*((end(\s*(if|do|proc|module))?)|fi|od)\s*(;|:)?\s*" />
+			VALUE="\s*(((\bend\b)(\s*((\bif\b)|(\bdo\b)|(\bproc\b)|(\bmodule\b)))?)|(\bfi\b)|(\bod\b))\s*(;|:)?\s*" />
 		
 	</PROPS>
 
 	<RULES IGNORE_CASE="FALSE" HIGHLIGHT_DIGITS="TRUE">
 		<!-- Standard literals -->
+			<!-- string -->
 			<SPAN TYPE="LITERAL1" ESCAPE="\" NO_LINE_BREAK="FALSE">
 				<BEGIN>"</BEGIN>
 				<END>"</END>
 			</SPAN>
-			<SPAN TYPE="LITERAL1" ESCAPE="\" NO_LINE_BREAK="FALSE">
+			<!-- uneval -->
+			<SPAN TYPE="LITERAL3" ESCAPE="\" NO_LINE_BREAK="FALSE">
 				<BEGIN>'</BEGIN>
 				<END>'</END>
 			</SPAN>
-			<SPAN TYPE="LITERAL1" ESCAPE="\" NO_LINE_BREAK="FALSE">
+			<!-- name -->
+			<SPAN TYPE="LITERAL2" ESCAPE="\" NO_LINE_BREAK="FALSE">
 				<BEGIN>`</BEGIN>
 				<END>`</END>
 			</SPAN>
@@ -55,37 +59,70 @@
 			<EOL_SPAN TYPE="COMMENT2">#</EOL_SPAN>
 
 		<!-- Operator -->
+			
 			<SEQ TYPE="OPERATOR">+</SEQ>
 			<SEQ TYPE="OPERATOR">-</SEQ>
 			<SEQ TYPE="OPERATOR">*</SEQ>
 			<SEQ TYPE="OPERATOR">/</SEQ>
 			<SEQ TYPE="OPERATOR">^</SEQ>
+			<!-- <SEQ TYPE="OPERATOR">mod</SEQ> -->
+			<SEQ TYPE="OPERATOR">!</SEQ>
+			
 			<SEQ TYPE="OPERATOR">&lt;&gt;</SEQ>
 			<SEQ TYPE="OPERATOR">&lt;=</SEQ>
 			<SEQ TYPE="OPERATOR">&lt;</SEQ>
 			<SEQ TYPE="OPERATOR">&gt;=</SEQ>
 			<SEQ TYPE="OPERATOR">&gt;</SEQ>
 			<SEQ TYPE="OPERATOR">=</SEQ>
-			<SEQ TYPE="OPERATOR">$</SEQ>
+			
 			<SEQ TYPE="OPERATOR">@@</SEQ>
 			<SEQ TYPE="OPERATOR">@</SEQ>
 			<SEQ TYPE="OPERATOR">||</SEQ>
-			<SEQ TYPE="OPERATOR">:=</SEQ>
+			<SEQ TYPE="OPERATOR">.</SEQ>
 			<SEQ TYPE="OPERATOR">::</SEQ>
 			<SEQ TYPE="OPERATOR">:-</SEQ>
+			
+			<SEQ TYPE="OPERATOR">:=</SEQ>
 			<SEQ TYPE="OPERATOR">&amp;</SEQ>
-			<SEQ TYPE="OPERATOR">!</SEQ>
-
+			<SEQ TYPE="OPERATOR">$</SEQ>
+			
+			<!-- Element-wise Operators -->
+				<SEQ TYPE="OPERATOR">+~</SEQ>
+				<SEQ TYPE="OPERATOR">-~</SEQ>
+				<SEQ TYPE="OPERATOR">*~</SEQ>
+				<SEQ TYPE="OPERATOR">/~</SEQ>
+				<SEQ TYPE="OPERATOR">^~</SEQ>
+				<!-- <SEQ TYPE="OPERATOR">mod~</SEQ> -->
+				<SEQ TYPE="OPERATOR">!~</SEQ>
+				
+				<SEQ TYPE="OPERATOR">&lt;&gt;~</SEQ>
+				<SEQ TYPE="OPERATOR">&lt;=~</SEQ>
+				<SEQ TYPE="OPERATOR">&lt;~</SEQ>
+				<SEQ TYPE="OPERATOR">&gt;=~</SEQ>
+				<SEQ TYPE="OPERATOR">&gt;~</SEQ>
+				<SEQ TYPE="OPERATOR">=~</SEQ>
+				
+				<SEQ TYPE="OPERATOR">@@~</SEQ>
+				<SEQ TYPE="OPERATOR">@~</SEQ>
+				<SEQ TYPE="OPERATOR">||~</SEQ>
+				<SEQ TYPE="OPERATOR">.~</SEQ>
+				<SEQ TYPE="OPERATOR">::~</SEQ>
+				
 		<KEYWORDS>
 			<!-- Reserved words -->
 				<KEYWORD1>and</KEYWORD1>
 				<KEYWORD1>or</KEYWORD1>
 				<KEYWORD1>xor</KEYWORD1>
+				<KEYWORD1>implies</KEYWORD1>
+				<KEYWORD1>not</KEYWORD1>
+				
 				<KEYWORD1>union</KEYWORD1>
+				<KEYWORD1>subset</KEYWORD1>
 				<KEYWORD1>intersect</KEYWORD1>
 				<KEYWORD1>minus</KEYWORD1>
+				<KEYWORD1>in</KEYWORD1>
+				
 				<KEYWORD1>mod</KEYWORD1>
-				<KEYWORD1>not</KEYWORD1>
 				<KEYWORD1>assuming</KEYWORD1>
 				<KEYWORD1>break</KEYWORD1>
 				<KEYWORD1>by</KEYWORD1>
@@ -104,8 +141,6 @@
 				<KEYWORD1>from</KEYWORD1>
 				<KEYWORD1>global</KEYWORD1>
 				<KEYWORD1>if</KEYWORD1>
-				<KEYWORD1>implies</KEYWORD1>
-				<KEYWORD1>in</KEYWORD1>
 				<KEYWORD1>local</KEYWORD1>
 				<KEYWORD1>module</KEYWORD1>
 				<KEYWORD1>next</KEYWORD1>
@@ -118,7 +153,6 @@
 				<KEYWORD1>return</KEYWORD1>
 				<KEYWORD1>save</KEYWORD1>
 				<KEYWORD1>stop</KEYWORD1>
-				<KEYWORD1>subset</KEYWORD1>
 				<KEYWORD1>then</KEYWORD1>
 				<KEYWORD1>to</KEYWORD1>
 				<KEYWORD1>try</KEYWORD1>
@@ -196,6 +230,7 @@
 				<FUNCTION>BesselY</FUNCTION>
 				<FUNCTION>BesselYZeros</FUNCTION>
 				<FUNCTION>Beta</FUNCTION>
+				<FUNCTION>binomial</FUNCTION>
 				<FUNCTION>branches</FUNCTION>
 				<FUNCTION>C</FUNCTION>
 				<FUNCTION>cat</FUNCTION>
@@ -267,6 +302,7 @@
 				<FUNCTION>DistDeg</FUNCTION>
 				<FUNCTION>Divide</FUNCTION>
 				<FUNCTION>divide</FUNCTION>
+				<FUNCTION>doublefactorial</FUNCTION>
 				<FUNCTION>dsolve</FUNCTION>
 				<FUNCTION>efficiency</FUNCTION>
 				<FUNCTION>Ei</FUNCTION>
@@ -315,6 +351,7 @@
 				<FUNCTION>extrema</FUNCTION>
 				<FUNCTION>Factor</FUNCTION>
 				<FUNCTION>factor</FUNCTION>
+				<FUNCTION>factorial</FUNCTION>
 				<FUNCTION>Factors</FUNCTION>
 				<FUNCTION>factors</FUNCTION>
 				<FUNCTION>fclose</FUNCTION>
