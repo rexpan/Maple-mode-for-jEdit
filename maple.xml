@@ -7,7 +7,6 @@
 		<PROPERTY NAME="commentStart" VALUE="(*" />
 		<PROPERTY NAME="commentEnd" VALUE="*)" />
 		<PROPERTY NAME="lineComment" VALUE="#" />
-		<!-- CHANGE:110602.0817 - add $ and @ to wordBreakChars -->
 		<PROPERTY NAME="wordBreakChars" VALUE=",+-=&lt;&gt;/?^&amp;*$@" />
 		<!-- Auto indent -->
 			<PROPERTY NAME="unalignedOpenBrackets"  VALUE="(" />
@@ -54,15 +53,12 @@
 				<BEGIN>`</BEGIN>
 				<END>`</END>
 			</SPAN>
-
 		<!-- Comment -->
 			<SPAN TYPE="COMMENT1">
 				<BEGIN>(*</BEGIN>
 				<END>*)</END>
 			</SPAN>
-	
 			<EOL_SPAN TYPE="COMMENT2">#</EOL_SPAN>
-
 		<!-- Operator -->
 			<SEQ TYPE="OPERATOR">+</SEQ>
 			<SEQ TYPE="OPERATOR">-</SEQ>
@@ -89,29 +85,7 @@
 			<SEQ TYPE="OPERATOR">:=</SEQ>
 			<SEQ TYPE="OPERATOR">&amp;</SEQ>
 			<SEQ TYPE="OPERATOR">$</SEQ>
-			
-			<!-- Element-wise Operators -->
-				<SEQ TYPE="OPERATOR">+~</SEQ>
-				<SEQ TYPE="OPERATOR">-~</SEQ>
-				<SEQ TYPE="OPERATOR">*~</SEQ>
-				<SEQ TYPE="OPERATOR">/~</SEQ>
-				<SEQ TYPE="OPERATOR">^~</SEQ>
-				<!-- <SEQ TYPE="OPERATOR">mod~</SEQ> -->
-				<SEQ TYPE="OPERATOR">!~</SEQ>
-				
-				<SEQ TYPE="OPERATOR">&lt;&gt;~</SEQ>
-				<SEQ TYPE="OPERATOR">&lt;=~</SEQ>
-				<SEQ TYPE="OPERATOR">&lt;~</SEQ>
-				<SEQ TYPE="OPERATOR">&gt;=~</SEQ>
-				<SEQ TYPE="OPERATOR">&gt;~</SEQ>
-				<SEQ TYPE="OPERATOR">=~</SEQ>
-				
-				<SEQ TYPE="OPERATOR">@@~</SEQ>
-				<SEQ TYPE="OPERATOR">@~</SEQ>
-				<SEQ TYPE="OPERATOR">||~</SEQ>
-				<SEQ TYPE="OPERATOR">.~</SEQ>
-				<SEQ TYPE="OPERATOR">::~</SEQ>
-				
+			<SEQ TYPE="OPERATOR">~</SEQ>
 		<KEYWORDS>
 			<!-- Reserved words -->
 				<KEYWORD1>assuming</KEYWORD1>
@@ -166,7 +140,6 @@
 				<KEYWORD3>negint</KEYWORD3>
 				<KEYWORD3>even</KEYWORD3>
 				<KEYWORD3>odd</KEYWORD3>
-				<KEYWORD3>real</KEYWORD3>
 				<KEYWORD3>rational</KEYWORD3>
 				<KEYWORD3>fraction</KEYWORD3>
 				<KEYWORD3>float</KEYWORD3>
@@ -179,6 +152,7 @@
 				<KEYWORD3>atomic</KEYWORD3>
 				
 				<KEYWORD3>module</KEYWORD3>
+				<KEYWORD3>record</KEYWORD3>
 				<KEYWORD3>procedure</KEYWORD3>
 				<KEYWORD3>function</KEYWORD3>
 				
@@ -298,9 +272,9 @@
 						<FUNCTION>map</FUNCTION>
 						<FUNCTION>map</FUNCTION>
 						<FUNCTION>map</FUNCTION>
-						
 			<!-- Standard library functions -->
 				<FUNCTION>about</FUNCTION>
+				<FUNCTION>abs</FUNCTION>
 				<FUNCTION>ans</FUNCTION>
 				<FUNCTION>add</FUNCTION>
 				<FUNCTION>addcoords</FUNCTION>
@@ -350,6 +324,7 @@
 				<FUNCTION>asympt</FUNCTION>
 				<FUNCTION>attributes</FUNCTION>
 				<FUNCTION>band</FUNCTION>
+				<FUNCTION>BellB</FUNCTION>
 				<FUNCTION>Berlekamp</FUNCTION>
 				<FUNCTION>bernoulli</FUNCTION>
 				<FUNCTION>bernstein</FUNCTION>
@@ -380,6 +355,7 @@
 				<FUNCTION>combine</FUNCTION>
 				<FUNCTION>comparray</FUNCTION>
 				<FUNCTION>compiletable</FUNCTION>
+				<FUNCTION>CompleteBellB</FUNCTION>
 				<FUNCTION>compoly</FUNCTION>
 				<FUNCTION>CompSeq</FUNCTION>
 				<FUNCTION>conjugate</FUNCTION>
@@ -395,6 +371,7 @@
 				<FUNCTION>cot</FUNCTION>
 				<FUNCTION>coth</FUNCTION>
 				<FUNCTION>coulditbe</FUNCTION>
+				<FUNCTION>CoulombF</FUNCTION>
 				<FUNCTION>csc</FUNCTION>
 				<FUNCTION>csch</FUNCTION>
 				<FUNCTION>csgn</FUNCTION>
@@ -403,6 +380,7 @@
 				<FUNCTION>CylinderD</FUNCTION>
 				<FUNCTION>CylinderU</FUNCTION>
 				<FUNCTION>CylinderV</FUNCTION>
+				<FUNCTION>csgn</FUNCTION>
 				<FUNCTION>D</FUNCTION>
 				<FUNCTION>dawson</FUNCTION>
 				<FUNCTION>Default0</FUNCTION>
@@ -452,6 +430,7 @@
 				<FUNCTION>erfi</FUNCTION>
 				<FUNCTION>euler</FUNCTION>
 				<FUNCTION>eulermac</FUNCTION>
+				<FUNCTION>EqualEntries</FUNCTION>
 				<FUNCTION>Eval</FUNCTION>
 				<FUNCTION>eval</FUNCTION>
 				<FUNCTION>evala</FUNCTION>
@@ -537,6 +516,16 @@
 				<FUNCTION>HermiteH</FUNCTION>
 				<FUNCTION>hermitian</FUNCTION>
 				<FUNCTION>Hessenberg</FUNCTION>
+				<FUNCTION>HeunB</FUNCTION>
+				<FUNCTION>HeunC</FUNCTION>
+				<FUNCTION>HeunD</FUNCTION>
+				<FUNCTION>HeunG</FUNCTION>
+				<FUNCTION>HeunT</FUNCTION>
+				<FUNCTION>HeunBPrime</FUNCTION>
+				<FUNCTION>HeunCPrime</FUNCTION>
+				<FUNCTION>HeunDPrime</FUNCTION>
+				<FUNCTION>HeunGPrime</FUNCTION>
+				<FUNCTION>HeunTPrime</FUNCTION>
 				<FUNCTION>hfarray</FUNCTION>
 				<FUNCTION>history</FUNCTION>
 				<FUNCTION>hypergeom</FUNCTION>
@@ -548,9 +537,9 @@
 				<FUNCTION>igcd</FUNCTION>
 				<FUNCTION>igcdex</FUNCTION>
 				<FUNCTION>ilcm</FUNCTION>
-				<FUNCTION>ilog10</FUNCTION>
-				<FUNCTION>ilog2</FUNCTION>
 				<FUNCTION>ilog</FUNCTION>
+				<FUNCTION>ilog2</FUNCTION>
+				<FUNCTION>ilog10</FUNCTION>
 				<FUNCTION>Im</FUNCTION>
 				<FUNCTION>implicitdiff</FUNCTION>
 				<FUNCTION>ImportMatrix</FUNCTION>
@@ -641,6 +630,7 @@
 				<FUNCTION>log10</FUNCTION>
 				<FUNCTION>LommelS1</FUNCTION>
 				<FUNCTION>Lommels2</FUNCTION>
+				<FUNCTION>lowerbound</FUNCTION>
 				<FUNCTION>lprint</FUNCTION>
 				<FUNCTION>map</FUNCTION>
 				<FUNCTION>map2</FUNCTION>
@@ -678,6 +668,7 @@
 				<FUNCTION>nprintf</FUNCTION>
 				<FUNCTION>Nullspace</FUNCTION>
 				<FUNCTION>numboccur</FUNCTION>
+				<FUNCTION>numelems</FUNCTION>
 				<FUNCTION>numer</FUNCTION>
 				<FUNCTION>NumericClass</FUNCTION>
 				<FUNCTION>NumericEvent</FUNCTION>
@@ -768,6 +759,7 @@
 				<FUNCTION>roots</FUNCTION>
 				<FUNCTION>round</FUNCTION>
 				<FUNCTION>Rounding</FUNCTION>
+				<FUNCTION>rcurry</FUNCTION>
 				<FUNCTION>rsolve</FUNCTION>
 				<FUNCTION>rtable</FUNCTION>
 				<FUNCTION>rtable_algebra</FUNCTION>
@@ -825,6 +817,8 @@
 				<FUNCTION>sscanf</FUNCTION>
 				<FUNCTION>Ssi</FUNCTION>
 				<FUNCTION>ssystem</FUNCTION>
+				<FUNCTION>Stirling1</FUNCTION>
+				<FUNCTION>Stirling2</FUNCTION>
 				<FUNCTION>storage</FUNCTION>
 				<FUNCTION>string</FUNCTION>
 				<FUNCTION>StruveH</FUNCTION>
@@ -868,6 +862,7 @@
 				<FUNCTION>Unordered</FUNCTION>
 				<FUNCTION>unprotect</FUNCTION>
 				<FUNCTION>update</FUNCTION>
+				<FUNCTION>upperbound</FUNCTION>
 				<FUNCTION>UseHardwareFloats</FUNCTION>
 				<FUNCTION>userinfo</FUNCTION>
 				<FUNCTION>value</FUNCTION>
@@ -912,6 +907,126 @@
 				<!-- <LITERAL2>tracelast</LITERAL2> -->		<!-- move to DEBUG -->
 				<LITERAL2>true</LITERAL2>
 				<LITERAL2>undefined</LITERAL2>
+			<!-- packages name -->
+				<LITERAL1>algcurves</LITERAL1>
+				<LITERAL1>Algebraic</LITERAL1>
+				<LITERAL1>ArrayTools</LITERAL1>
+				<LITERAL1>AudioTools</LITERAL1>
+				<LITERAL1>Bits</LITERAL1>
+				<LITERAL1>Cache</LITERAL1>
+				<LITERAL1>CAD</LITERAL1>
+				<LITERAL1>codegen</LITERAL1>
+				<LITERAL1>CodeGeneration</LITERAL1>
+				<LITERAL1>CodeTools</LITERAL1>
+				<LITERAL1>combinat</LITERAL1>
+				<LITERAL1>combstruct</LITERAL1>
+				<LITERAL1>ContextMenu</LITERAL1>
+				<LITERAL1>CUDA</LITERAL1>
+				<LITERAL1>CurveFitting</LITERAL1>
+				<LITERAL1>Database</LITERAL1>
+				<LITERAL1>DEtools</LITERAL1>
+				<LITERAL1>DifferentialAlgebra</LITERAL1>
+				<LITERAL1>DifferentialGeometry</LITERAL1>
+				<LITERAL1>difforms</LITERAL1>
+				<LITERAL1>DiscreteTransforms</LITERAL1>
+				<LITERAL1>DocumentTools</LITERAL1>
+				<LITERAL1>Domains</LITERAL1>
+				<LITERAL1>DynamicSystems</LITERAL1>
+				<LITERAL1>ExcelTools</LITERAL1>
+				<LITERAL1>ExternalCalling</LITERAL1>
+				<LITERAL1>FileTools</LITERAL1>
+				<LITERAL1>GaussInt</LITERAL1>
+				<LITERAL1>genfunc</LITERAL1>
+				<LITERAL1>geom3d</LITERAL1>
+				<LITERAL1>geometry</LITERAL1>
+				<LITERAL1>gfun</LITERAL1>
+				<LITERAL1>GlobalOptimization</LITERAL1>
+				<LITERAL1>GraphTheory</LITERAL1>
+				<LITERAL1>Grid</LITERAL1>
+				<LITERAL1>Groebner</LITERAL1>
+				<LITERAL1>group</LITERAL1>
+				<LITERAL1>hashmset</LITERAL1>
+				<LITERAL1>heap</LITERAL1>
+				<LITERAL1>HTTP</LITERAL1>
+				<LITERAL1>ImageTools</LITERAL1>
+				<LITERAL1>InstallerBuilder</LITERAL1>
+				<LITERAL1>IntegerRelations</LITERAL1>
+				<LITERAL1>IntegrationTools</LITERAL1>
+				<LITERAL1>inttrans</LITERAL1>
+				<LITERAL1>LargeExpressions</LITERAL1>
+				<LITERAL1>LibraryTools</LITERAL1>
+				<LITERAL1>liesymm</LITERAL1>
+				<LITERAL1>LinearAlgebra</LITERAL1>
+				<LITERAL1>LinearFunctionalSystems</LITERAL1>
+				<LITERAL1>LinearOperators</LITERAL1>
+				<LITERAL1>ListTools</LITERAL1>
+				<LITERAL1>Logic</LITERAL1>
+				<LITERAL1>LREtools</LITERAL1>
+				<LITERAL1>Magma</LITERAL1>
+				<LITERAL1>Maplets</LITERAL1>
+				<LITERAL1>MathematicalFunctions</LITERAL1>
+				<LITERAL1>MathML</LITERAL1>
+				<LITERAL1>Matlab</LITERAL1>
+				<LITERAL1>MatrixPolynomialAlgebra</LITERAL1>
+				<LITERAL1>MmaTranslator</LITERAL1>
+				<LITERAL1>MTM</LITERAL1>
+				<LITERAL1>MultiSeries</LITERAL1>
+				<LITERAL1>numapprox</LITERAL1>
+				<LITERAL1>numtheory</LITERAL1>
+				<LITERAL1>Optimization</LITERAL1>
+				<LITERAL1>Ore_algebra</LITERAL1>
+				<LITERAL1>OreTools</LITERAL1>
+				<LITERAL1>OrthogonalSeries</LITERAL1>
+				<LITERAL1>orthopoly</LITERAL1>
+				<LITERAL1>padic</LITERAL1>
+				<LITERAL1>PDEtools</LITERAL1>
+				<LITERAL1>Physics</LITERAL1>
+				<LITERAL1>plots</LITERAL1>
+				<LITERAL1>plottools</LITERAL1>
+				<LITERAL1>PolynomialIdeals</LITERAL1>
+				<LITERAL1>PolynomialTools</LITERAL1>
+				<LITERAL1>powseries</LITERAL1>
+				<LITERAL1>priqueue</LITERAL1>
+				<LITERAL1>ProcessControl</LITERAL1>
+				<LITERAL1>QDifferenceEquations</LITERAL1>
+				<LITERAL1>queue</LITERAL1>
+				<LITERAL1>RandomTools</LITERAL1>
+				<LITERAL1>RationalNormalForms</LITERAL1>
+				<LITERAL1>RealDomain</LITERAL1>
+				<LITERAL1>RegularChains</LITERAL1>
+				<LITERAL1>RootFinding</LITERAL1>
+				<LITERAL1>ScientificConstants</LITERAL1>
+				<LITERAL1>ScientificErrorAnalysis</LITERAL1>
+				<LITERAL1>Security</LITERAL1>
+				<LITERAL1>simplex</LITERAL1>
+				<LITERAL1>Slode</LITERAL1>
+				<LITERAL1>SNAP</LITERAL1>
+				<LITERAL1>Sockets</LITERAL1>
+				<LITERAL1>SoftwareMetrics</LITERAL1>
+				<LITERAL1>SolveTools</LITERAL1>
+				<LITERAL1>Spread</LITERAL1>
+				<LITERAL1>stack</LITERAL1>
+				<LITERAL1>Statistics</LITERAL1>
+				<LITERAL1>StringTools</LITERAL1>
+				<LITERAL1>Student</LITERAL1>
+				<LITERAL1>Student[Calculus1]</LITERAL1>
+				<LITERAL1>Student[LinearAlgebra]</LITERAL1>
+				<LITERAL1>Student[MultivariateCalculus]</LITERAL1>
+				<LITERAL1>Student[NumericalAnalysis]</LITERAL1>
+				<LITERAL1>Student[Precalculus]</LITERAL1>
+				<LITERAL1>Student[VectorCalculus]</LITERAL1>
+				<LITERAL1>SumTools</LITERAL1>
+				<LITERAL1>sumtools</LITERAL1>
+				<LITERAL1>tensor</LITERAL1>
+				<LITERAL1>Threads</LITERAL1>
+				<LITERAL1>Tolerances</LITERAL1>
+				<LITERAL1>Typesetting</LITERAL1>
+				<LITERAL1>TypeTools</LITERAL1>
+				<LITERAL1>Units</LITERAL1>
+				<LITERAL1>VariationalCalculus</LITERAL1>
+				<LITERAL1>VectorCalculus</LITERAL1>
+				<LITERAL1>Worksheet</LITERAL1>
+				<LITERAL1>XMLTools</LITERAL1>
 		</KEYWORDS>
 	</RULES>
 </MODE>
