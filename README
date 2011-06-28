@@ -1,0 +1,10 @@
+This file is use with jEdit text Editor.
+It is for Maple programming language.
+To use it, you just copy the maple.xml file
+and replace in the maple.xml file in the mode directory.
+In Windows 7 32bit by default it should be
+"C:\Program Files\jEdit\modes"
+
+-------------------------------
+rexpan
+https://github.com/rexpan/Maple-mode-for-jEdit
