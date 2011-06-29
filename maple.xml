@@ -11,29 +11,29 @@
 		<!-- Auto indent -->
 			<PROPERTY NAME="unalignedOpenBrackets"  VALUE="(" />
 			<PROPERTY NAME="unalignedCloseBrackets" VALUE=")" />
+			<PROPERTY NAME="doubleBracketIndent" VALUE="false" />
+			<PROPERTY NAME="multipleBracketIndent" VALUE="false" />
 		<!-- 
-			<PROPERTY NAME="indentOpenBrackets" VALUE="[{(" />
-			<PROPERTY NAME="indentCloseBrackets" VALUE="]})" />
+			<PROPERTY NAME="indentOpenBrackets" VALUE="([{" />
+			<PROPERTY NAME="indentCloseBrackets" VALUE=")]}" />
+
+			<PROPERTY NAME="doubleBracketIndent" VALUE="false" />
+			<PROPERTY NAME="multipleBracketIndent" VALUE="FALSE" />
 			
 			<PROPERTY NAME="indentPrevLine" 
 				VALUE="\s*(if|while)\s*(|else|case|default:)[^;]*|for\s*\(.*)" />
-			<PROPERTY NAME="doubleBracketIndent" VALUE="false" />
 			<PROPERTY NAME="noWordSep" VALUE="-" />
 			<PROPERTY NAME="blockComment" VALUE="#" />
 			<PROPERTY NAME="ignoreWhitespace" VALUE="TRUE" />
-			<PROPERTY NAME="multipleBracketIndent" VALUE="true" />
+			
 		-->
 		<PROPERTY NAME="indentNextLines"
 			VALUE=".*(?&lt;!\bend\b\s)\b(?:(?:el)?if|else|do|proc|module)\b(?!.*\bend\b).*" />
-			<!-- VALUE="(\s*((\bif\b)?.*\bthen\b\s*))|(\s*(\b(for|while)\b)?.*\bdo\b\s*)|(.*(\bproc\b)\s*\(.*?\)\s*)|(.*(\bmodule\b)\s*\(.*\)\s*)" /> -->
 		<PROPERTY NAME="unindentThisLine" 
 			VALUE="\s*\b(?:end|elif|else)\b.*" />		
-			<!-- VALUE="\s*((((\bend\b)(\s*((\bif\b)|(\bdo\b)|(\bproc\b)|(\bmodule\b)))?)|(\bfi\b)|(\bod\b))|((\belif\b).*(\bthen\b))|(\belse\b))(;|:)?\s*" /> -->
 		<PROPERTY NAME="electricKeys" VALUE="\s*\b(?:end|elif|else)\b.*" />
 		<PROPERTY NAME="unindentNextLines" 
 			VALUE="\s*\b(?:end|elif|else)\b.*" />
-			<!-- VALUE="\s*\bend\b.*" /> -->
-			<!-- VALUE="\s*(((\bend\b)(\s*((\bif\b)|(\bdo\b)|(\bproc\b)|(\bmodule\b)))?)|(\bfi\b)|(\bod\b))\s*(;|:)?\s*" /> -->
 	</PROPS>
 
 	<RULES IGNORE_CASE="FALSE" HIGHLIGHT_DIGITS="TRUE">
@@ -86,6 +86,9 @@
 			<SEQ TYPE="OPERATOR">&amp;</SEQ>
 			<SEQ TYPE="OPERATOR">$</SEQ>
 			<SEQ TYPE="OPERATOR">~</SEQ>
+			
+			<SEQ TYPE="OPERATOR">[</SEQ>
+			<SEQ TYPE="OPERATOR">]</SEQ>
 		<KEYWORDS>
 			<!-- Reserved words -->
 				<KEYWORD1>assuming</KEYWORD1>
